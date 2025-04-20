@@ -29,6 +29,40 @@ A simple command-line interface (CLI) application to fetch and display weather i
    pip install -r requirements.txt
    ```
 
+## Using `pyenv` to Manage Python Versions
+
+If you need to manage multiple Python versions, you can use `pyenv`:
+
+1. Install `pyenv`:
+   ```
+   curl https://pyenv.run | bash
+   ```
+
+2. Add `pyenv` to your shell:
+   ```
+   export PATH="$HOME/.pyenv/bin:$PATH"
+   eval "$(pyenv init --path)"
+   eval "$(pyenv init -)"
+   eval "$(pyenv virtualenv-init -)"
+   ```
+
+3. Restart your shell or run the commands directly in your terminal.
+
+4. Install the required Python version:
+   ```
+   pyenv install 3.x.x
+   ```
+
+5. Set the local Python version for the project:
+   ```
+   pyenv local 3.x.x
+   ```
+
+6. Verify the Python version:
+   ```
+   python --version
+   ```
+
 ## Usage
 
 To get the weather information for a specific zip code, run the following command:
