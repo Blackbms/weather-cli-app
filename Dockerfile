@@ -13,8 +13,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose port 5000 for the Flask app
 EXPOSE 5000
 
-# Define environment variable to disable buffering
+# Define environment variables
 ENV PYTHONUNBUFFERED=1
+# The API key will be provided at runtime
+ENV WEATHER_API_KEY=""
 
 # Run the application
 CMD ["python3", "src/main.py"]
