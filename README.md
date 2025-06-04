@@ -29,6 +29,34 @@ A simple command-line interface (CLI) application to fetch and display weather i
    pip install -r requirements.txt
    ```
 
+## API Key Setup
+
+This application requires an API key from OpenWeatherMap to function properly. You can get a free API key by signing up at [OpenWeatherMap](https://openweathermap.org/).
+
+Once you have your API key, you can set it up in one of the following ways:
+
+1. **Environment Variable**:
+   ```
+   export WEATHER_API_KEY=your_api_key_here
+   ```
+
+2. **Create a .env file**:
+   Copy the `.env.example` file to `.env` and replace `your_api_key_here` with your actual API key:
+   ```
+   cp .env.example .env
+   ```
+
+3. **Using Docker**:
+   When running with Docker, you can provide the API key as an environment variable:
+   ```
+   docker run -p 5000:5000 -e WEATHER_API_KEY=your_api_key_here weather-cli-app
+   ```
+   Or use the Makefile command:
+   ```
+   make run-with-key
+   ```
+   (This will prompt you to enter your API key)
+
 ## Using `pyenv` to Manage Python Versions
 
 If you need to manage multiple Python versions, you can use `pyenv`:

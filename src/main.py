@@ -6,6 +6,9 @@ from datetime import datetime
 # Explicitly set the template folder
 app = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), '../templates'))
 
+# Get API key from environment variable
+WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY', '')
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -15,8 +18,11 @@ def get_weather():
     zip_code = request.form.get('zip_code')
     if not zip_code:
         return render_template('index.html', error="Please enter a zip code.")
+    
+    if not WEATHER_API_KEY:
+        return render_template('index.html', error="API key not configured. Please set the WEATHER_API_KEY environment variable.")
 
-    weather_api = WeatherAPI('d7494fd98b3cf1de4e9edaed6506164c')
+    weather_api = WeatherAPI(WEATHER_API_KEY)
     try:
         weather_data = weather_api.get_weather(zip_code)
 

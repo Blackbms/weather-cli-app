@@ -39,3 +39,5 @@ jobs:
         context: .
         push: true
         tags: ghcr.io/${{ env.REPOSITORY_OWNER }}/weather-cli-app:latest
+        build-args: |
+          WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}
