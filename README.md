@@ -1,3 +1,5 @@
+# Switching to UV
+
 # Weather CLI App
 
 A simple command-line interface (CLI) application to fetch and display weather information based on a given zip code using a free weather API.
