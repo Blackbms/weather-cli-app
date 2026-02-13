@@ -1,0 +1,22 @@
+# Run the weather deployment workflow on pushes to the main branch or manually
+name: Deploy Weather App
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+    deploy:
+        runs-on: self-hosted, ubuntu-dev
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Deploy Weather App
+              run: |
+                echo "Deploying Weather App..."
+                # Add deployment commands here
+                echo "Weather App deployed successfully!"
+                # Add Action secrete WEATHER_API_KEY to the .env file
+                echo "WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}" >> .env
+                make run-with-environment
