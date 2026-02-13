@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 jobs:
     deploy:
-        runs-on: self-hosted, ubuntu-dev
+        runs-on: ubuntu-dev
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
