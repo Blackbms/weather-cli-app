@@ -8,7 +8,9 @@ from utils.weather_api import WeatherAPI
 
 # Explicitly set the template folder
 app = Flask(
-    __name__, template_folder=os.path.join(os.path.dirname(__file__), "../templates")
+    __name__, 
+    template_folder=os.path.join(os.path.dirname(__file__), "../templates"),
+    static_folder=os.path.join(os.path.dirname(__file__), "../static")
 )
 
 # Get API key from environment variable
