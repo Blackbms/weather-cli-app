@@ -19,4 +19,4 @@ jobs:
                 echo "Weather App deployed successfully!"
                 # Add Action secrete WEATHER_API_KEY to the .env file
                 echo "WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}" >> .env
-                make run-with-environment
+                make run-with-env
