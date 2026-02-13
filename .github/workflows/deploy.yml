@@ -3,7 +3,7 @@ name: Deploy Weather App
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["docker-build"]
+    workflows: ["Build and Push Docker Image to GitHub Container Registry"]
     types:
       - completed
 jobs:
