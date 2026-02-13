@@ -1,9 +1,6 @@
-# Run the weather deployment workflow on pushes to the main branch or manually
+# Run the weather deployment workflow after docker-build completes or manually
 name: Deploy Weather App
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
   workflow_run:
     workflows: ["docker-build"]
@@ -12,7 +9,7 @@ on:
 jobs:
     deploy:
         runs-on: ubuntu-dev
-        if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run' }}
+        if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
