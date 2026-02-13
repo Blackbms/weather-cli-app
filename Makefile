@@ -7,21 +7,26 @@ IMAGE_NAME = ghcr.io/blackbms/weather-cli-app:latest
 pull:
 	docker pull $(IMAGE_NAME)
 
+# Stop and remove any existing weather-cli-app containers
+stop-weather:
+	-docker stop $$(docker ps -q --filter ancestor=$(IMAGE_NAME)) 2>/dev/null || true
+	-docker rm $$(docker ps -aq --filter ancestor=$(IMAGE_NAME)) 2>/dev/null || true
+
 # Build the Docker image locally (for development)
 build:
 	docker build -t weather-cli-app .
 
 # Run the Docker container without API key
-run: pull
+run: pull stop-weather
 	docker run -d -p 5000:5000 $(IMAGE_NAME)
 
 # Run the Docker container with API key
-run-with-key: pull
+run-with-key: pull stop-weather
 	@read -p "Enter Weather API Key: " API_KEY; \
 	docker run -d -p 5000:5000 -e WEATHER_API_KEY="$$API_KEY" $(IMAGE_NAME)
 
 # Run with environment file
-run-with-env: pull
+run-with-env: pull stop-weather
 	docker run -d -p 5000:5000 --env-file .env $(IMAGE_NAME)
 
 # Stop all running containers
