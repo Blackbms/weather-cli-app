@@ -9,8 +9,9 @@ pull:
 
 # Stop and remove any existing weather-cli-app containers
 stop-weather:
-	-docker stop $$(docker ps -q --filter ancestor=$(IMAGE_NAME)) 2>/dev/null || true
-	-docker rm $$(docker ps -aq --filter ancestor=$(IMAGE_NAME)) 2>/dev/null || true
+	-docker stop $$(docker ps -q --filter "publish=5000") 2>/dev/null || true
+	-docker rm $$(docker ps -aq --filter "publish=5000") 2>/dev/null || true
+	-docker container prune -f 2>/dev/null || true
 
 # Build the Docker image locally (for development)
 build:
