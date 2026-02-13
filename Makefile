@@ -1,21 +1,28 @@
 # Makefile for managing the Weather CLI App Docker container
 
-# Build the Docker image
+# Docker image from GitHub Container Registry
+IMAGE_NAME = ghcr.io/blackbms/weather-cli-app:latest
+
+# Pull the latest Docker image from GitHub Container Registry
+pull:
+	docker pull $(IMAGE_NAME)
+
+# Build the Docker image locally (for development)
 build:
 	docker build -t weather-cli-app .
 
 # Run the Docker container without API key
-run:
-	docker run -d -p 5000:5000 weather-cli-app
+run: pull
+	docker run -d -p 5000:5000 $(IMAGE_NAME)
 
 # Run the Docker container with API key
-run-with-key:
+run-with-key: pull
 	@read -p "Enter Weather API Key: " API_KEY; \
-	docker run -d -p 5000:5000 -e WEATHER_API_KEY="$$API_KEY" weather-cli-app
+	docker run -d -p 5000:5000 -e WEATHER_API_KEY="$$API_KEY" $(IMAGE_NAME)
 
 # Run with environment file
-run-with-env:
-	docker run -d -p 5000:5000 --env-file .env weather-cli-app
+run-with-env: pull
+	docker run -d -p 5000:5000 --env-file .env $(IMAGE_NAME)
 
 # Stop all running containers
 stop:
@@ -27,4 +34,4 @@ clean:
 
 # Remove the Docker image
 remove-image:
-	docker rmi weather-cli-app
+	docker rmi $(IMAGE_NAME)
