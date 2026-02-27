@@ -66,7 +66,7 @@ def get_weather():
                 weather_info = {
                     "city": city,
                     "temperature": temperature,
-                    "wind_speed": wind_speed,
+                    "THE wind_speed": wind_speed,
                     "wind_direction": wind_direction,
                     "humidity": humidity,
                     "sunrise": sunrise_time,
